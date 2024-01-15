@@ -1,0 +1,188 @@
+<html>
+<head>
+<title>Calculator</title>
+<style>
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: rgb(224, 235, 167);
+}
+form{
+    margin: auto;
+    height: 80vh;
+    width: 60vh;
+    padding: 2em;
+    background-color: rgb(241, 241, 236);
+    border-radius: 1em;
+}
+.calci1{
+    border: none;
+    padding: 8px;
+    border-radius: 0.5em;
+    height: 18vh;
+    background-color: rgb(231, 231, 181);
+}
+#calci11{
+    border: none;
+    width: 100%;
+    font-size: 20px;
+    padding-left: 1em;
+    padding-top: 0.0007em;
+    background-color: rgb(231, 231, 181);
+}
+#calci12{
+    border: none;
+    width: 100%;
+    font-size: 40px;
+    padding-left: 17px;
+    padding-top: 0.0007em;
+    clear: left;
+    background-color: rgb(231, 231, 181);
+}
+.row{
+    padding-top: 10px;
+}
+.column{
+    font-size: medium;
+    border: none;
+    border-radius: 0.5em;
+    margin: 5px;
+    padding: 5px;
+    display: block;
+    float: left;
+    height: 9vh;
+    width: 17.7%;
+    text-align: center;
+    background-color: rgb(231, 231, 181);
+}
+</style>
+</head>
+<body>
+<form action="/entity-that-handles-form-details" method="post">
+    <h2 style="color: rgb(75, 65, 65);"><center>CALCULATOR</center></h2>
+    <div class="calci1">
+        <div class="calci11">
+            <input type="text" id="calci11" readonly>
+        </div><br><br><br>
+        <div class="calci12">
+            <input type="text" id="calci12" readonly>
+        </div>
+    </div>
+    <div class="row">
+        <button type="button" class="column" onclick="appendValue('(')">
+            <p><b>(</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue(')')">
+            <p><b>)</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendAnswer()">
+            <p><b>ans</b></p>
+        </button>
+        <button type="button" class="column" onclick="deleteValue()">
+            <p><b>del</b></p>
+        </button>
+        <button type="button" class="column" onclick="clearDisplay()">
+            <p><b>clear</b></p>
+        </button>
+    </div>
+    <div class="row">
+        <button type="button" class="column" onclick="appendValue('7')">
+            <p><b>7</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('8')">
+            <p><b>8</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('9')">
+            <p><b>9</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('%')">
+            <p><b>%</b></p>
+        </button>
+        <button type="button" class="column" onclick="calculateSquareRoot()">
+            <p><b>√</b></p>
+        </button>
+    </div>
+    <div class="row">
+        <button type="button" class="column" onclick="appendValue('4')">
+            <p><b>4</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('5')">
+            <p><b>5</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('6')">
+            <p><b>6</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('*')">
+            <p><b>×</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('/')">
+            <p><b>÷</b></p>
+        </button>
+    </div>
+    <div class="row">
+        <button type="button" class="column" onclick="appendValue('1')">
+            <p><b>1</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('2')">
+            <p><b>2</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('3')">
+            <p><b>3</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('+')">
+            <p><b>+</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('-')">
+            <p><b>-</b></p>
+        </button>
+    </div>
+    <div class="row">
+        <button type="button" class="column" onclick="appendValue('.')">
+            <p><b>.</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('0')">
+            <p><b>0</b></p>
+        </button>
+        <button type="button" class="column" onclick="appendValue('00')">
+            <p><b>00</b></p>
+        </button>
+        <button type="button" class="column" style="width: 37.8%;" onclick="calculate()">
+            <p><b>Enter</b></p>
+        </button>
+    </div>
+</form>
+<script>
+    let display = document.getElementById('calci11');
+    let answer=document.getElementById('calci12');
+    function appendValue(value) {
+        display.value += value;
+    }
+
+    function clearDisplay() {
+        display.value = '';
+        answer.value = '';
+    }
+    function appendAnswer(){
+        display.value=answer.value;
+    }
+    function calculate() {
+        try {
+            answer.value = eval(display.value);
+        } catch (error) {
+            answer.value = 'Error';
+        }
+    }
+    function deleteValue() {
+        display.value = display.value.slice(0, -1);
+    }
+    function calculateSquareRoot() {
+        try {
+            answer.value = Math.sqrt(eval(display.value));
+        } catch (error) {
+            answer.value = 'Error';
+        }
+    }
+</script>
+</body>
+</html>
